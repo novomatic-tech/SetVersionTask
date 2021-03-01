@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <SetVersionPath>$(MSBuildThisFileDirectory)\..\tools\Ntp.Tools.Build.SetVersion.dll</SetVersionPath>
+        <AssemblyInfoPath>Properties\AssemblyInfo.cs</AssemblyInfoPath>
+        <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">1.0.0.0</AssemblyVersion>
+        <AssemblyFileVersion Condition="'$(AssemblyFileVersion)' == ''">1.0.0.0</AssemblyFileVersion>
+        <AssemblyInformationalVersion Condition="'$(AssemblyInformationalVersion)' == ''">1.0.0.0</AssemblyInformationalVersion>
+    </PropertyGroup>
+
+    <UsingTask TaskName="SetVersion" AssemblyFile="$(SetVersionPath)" />
+    <Target Name="UpdateVersionNumber" Condition="Exists('$(SetVersionPath)') And Exists('$(AssemblyInfoPath)')">
+        <Message Text="Updating Version..." />
+        <SetVersion FileName="$(AssemblyInfoPath)" AssemblyVersion="$(AssemblyVersion)" AssemblyFileVersion="$(AssemblyFileVersion)" AssemblyInformationalVersion="$(AssemblyInformationalVersion)" />
+    </Target>
+    <Target Name="BeforeBuild" DependsOnTargets="UpdateVersionNumber">
+    </Target>
+</Project>

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SetVersionTask
+﻿namespace SetVersionTask
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
     public class VersionUpdateRule
     {
         private string[] partRules;
@@ -17,6 +16,7 @@ namespace SetVersionTask
             }
             foreach (var partRule in partRules)
             {
+                //|| Regex.Match(partRule, @"\d+").Success
                 if (partRule == "+" || partRule == "=")
                 {
                     // OK, valid rule
@@ -68,7 +68,5 @@ namespace SetVersionTask
             }
             return String.Join(".", outParts.ToArray());
         }
-
-
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Ntp.Tools.Build.SetVersion</id>
+    <version>1.1.0</version>
+    <title>Tools.Build.SetVersion</title>
+    <authors>Mark Heath</authors>
+    <owners>Mark Heath</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Defines MSBuild utility tasks for setting version.</description>
+    <releaseNotes>First implementation</releaseNotes>
+    <copyright>Copyright © Mark Heath 2011</copyright>
+    <tags>tools build set version</tags>
+  </metadata>
+  <files>
+	<file src="bin/$configuration$/Ntp.Tools.Build.SetVersion.dll" target="tools"></file>
+    <file src="*.targets" target="build"></file>
+    <file src="_._" target="content"></file>
+  </files>
+</package>

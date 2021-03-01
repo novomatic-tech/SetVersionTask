@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Build.Utilities;
-using Microsoft.Build.Framework;
-using System.IO;
-using System.Text.RegularExpressions;
-
-namespace SetVersionTask
+﻿namespace SetVersionTask
 {
+    using System;
+    using Microsoft.Build.Framework;
+    using Microsoft.Build.Utilities;
+
     public class SetVersion : Task
     {
         [Required]
@@ -16,6 +11,7 @@ namespace SetVersionTask
 
         public string AssemblyVersion { get; set; }
         public string AssemblyFileVersion { get; set; }
+        public string AssemblyInformationalVersion { get; set; }
 
         public override bool Execute()
         {
@@ -23,7 +19,7 @@ namespace SetVersionTask
             {
                 if (this.FileName.EndsWith(".cs", StringComparison.OrdinalIgnoreCase))
                 {
-                    var updater = new CSharpUpdater(AssemblyVersion, AssemblyFileVersion);
+                    var updater = new CSharpUpdater(AssemblyVersion, AssemblyFileVersion, AssemblyInformationalVersion);
                     updater.UpdateFile(FileName);
                 }
                 else if (this.FileName.EndsWith(".nuspec", StringComparison.OrdinalIgnoreCase))
@@ -41,14 +37,6 @@ namespace SetVersionTask
 
         private void UpdateNuSpec()
         {
-
-
         }
-
-        private void ValidateArguments()
-        {
-
-        }
-
     }
 }

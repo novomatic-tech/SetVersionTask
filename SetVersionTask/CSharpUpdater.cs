@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Text.RegularExpressions;
-
-namespace SetVersionTask
+﻿namespace SetVersionTask
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text.RegularExpressions;
+
     public class CSharpVersionUpdateRule
     {
         private VersionUpdateRule updateRule;
@@ -16,14 +14,18 @@ namespace SetVersionTask
             this.updateRule = new VersionUpdateRule(updateRule);
         }
         public string AttributeName { get; private set; }
-        public string Update(VersionString v) { return this.updateRule.Update(v); }
+
+        public string Update(VersionString v)
+        {
+            return updateRule.Update(v);
+        }
     }
 
     public class CSharpUpdater
     {
         private List<CSharpVersionUpdateRule> updateRules;
 
-        public CSharpUpdater(string newAssemblyVersion, string newAssemblyFileVersion = null)
+        public CSharpUpdater(string newAssemblyVersion, string newAssemblyFileVersion = null, string assemblyInformationalVersion = null)
         {
             this.updateRules = new List<CSharpVersionUpdateRule>();
             if (!String.IsNullOrEmpty(newAssemblyVersion))
@@ -34,7 +36,10 @@ namespace SetVersionTask
             {
                 this.updateRules.Add(new CSharpVersionUpdateRule("AssemblyFileVersion", newAssemblyFileVersion));
             }
-            // n.b. there is also AssemblyInformationalVersion
+            if (!String.IsNullOrEmpty(assemblyInformationalVersion))
+            {
+                this.updateRules.Add(new CSharpVersionUpdateRule("AssemblyInformationalVersion", assemblyInformationalVersion));
+            }
         }
 
         public void UpdateFile(string fileName)

@@ -8,9 +8,9 @@
     <ProjectGuid>{45DBC3B5-EFFB-4904-9C7B-D8FC9FB80048}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SetVersionTaskTests</RootNamespace>
-    <AssemblyName>SetVersionTaskTests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>SetVersionTask</RootNamespace>
+    <AssemblyName>Ntp.Tools.Build.SetVersionTests</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

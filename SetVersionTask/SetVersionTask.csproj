@@ -9,8 +9,8 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SetVersionTask</RootNamespace>
-    <AssemblyName>SetVersionTask</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AssemblyName>Ntp.Tools.Build.SetVersion</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,21 +47,9 @@
     <Compile Include="VersionString.cs" />
     <Compile Include="VersionUpdateRule.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Ntp.Tools.Build.SetVersion.targets" />
+    <Content Include="Tools.Build.SetVersion.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <SetVersionPath>..\Tools\</SetVersionPath>
-  </PropertyGroup>
-  <UsingTask TaskName="SetVersion" AssemblyFile="$(SetVersionPath)SetVersionTask.dll" />
-  <Target Name="UpdateVersionNumber" Condition="Exists('$(SetVersionPath)SetVersionTask.dll') AND '$(Configuration)' == 'Release'">
-    <Message Text="Updating Version..." />
-    <SetVersion FileName="Properties\AssemblyInfo.cs" AssemblyVersion="=.=.+.=" AssemblyFileVersion="=.=.+.=" />
-  </Target>
-  <Target Name="BeforeBuild" DependsOnTargets="UpdateVersionNumber">
-  
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
